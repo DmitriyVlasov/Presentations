@@ -186,9 +186,29 @@
         <div class="slides">
             <section >
 
-<h1>F# 4.0</h1>
+<h1>Обзор F# 4.0</h1>
 
 <p><img src="images/fsharp256.png" alt="FSharp" /></p>
+
+</section>
+
+<section >
+
+<h3>План презентации</h3>
+
+<ol>
+<li><strong>Введение</strong> — история разработки четвертой версии</li>
+<li><strong>Язык</strong> — улучшения языка F# и среды исполнения</li>
+<li><strong>Библиотека FSharp.Core</strong> — улучшения основой библиотеки языка F#</li>
+<li><strong>Интегрированная среда разработки</strong> — новые функции Visual Studio 2015 и плагина "Visual F# Power Tools"</li>
+<li><strong>Ссылки и материалы</strong> — ссылки на использованые в презентации материалы и полезные сайты для старта изучения F#</li>
+</ol>
+
+</section>
+
+<section >
+
+<h2>Введение</h2>
 
 </section>
 
@@ -379,32 +399,6 @@
 <p>Тепень мы получили доступ к группам регулярного выражения. Вы можете посмотреть его с помощью Intellisense</p>
 
 <p><img src="images/review-fsharp-4/example-static-provider.gif" alt="Example static provider" /></p>
-
-</section>
-
-</section>
-
-<section >
-
-<section >
-
-<h3>Поставщики типов, не допускающие значения <code>null</code></h3>
-
-<ul>
-<li>Поставщики типов теперь могут быть указаны как не допускающие значения <code>null</code> с помощью стандартного атрибута <code>AllowNullLiteral(false)</code>.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 3.1</h4>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 4.0</h4>
 
 </section>
 
@@ -667,43 +661,11 @@
 
 <section >
 
-<h3>Поддержка массивов .NET высокой размерности</h3>
-
-<ul>
-<li>Массивы .NET ранга 5 или выше теперь могут быть использованы кодом F #.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 3.1</h4>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 4.0</h4>
-
-</section>
-
-</section>
-
-<section >
-
-<section >
-
 <h3>Свойства расширения в инициализаторах объектов</h3>
 
 <ul>
 <li>Настраиваемые свойства расширения теперь можно задать в выражениях инициализатора объекта.</li>
 </ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 3.1</h4>
 
 </section>
 
@@ -814,12 +776,6 @@
 
 <section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
 
-<h4>F# 3.1</h4>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
 <h4>F# 4.0</h4>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
@@ -866,7 +822,24 @@
 
 <section >
 
-<h2>Библиотка языка FSharp.Core</h2>
+<h3>Прочие изменения в ядре языка F#</h3>
+
+<ul>
+<li>Поставщики типов, не допускающие значения <code>null</code>
+<ul>
+<li>Поставщики типов теперь могут быть указаны как не допускающие значения <code>null</code> с помощью стандартного атрибута <code>AllowNullLiteral(false)</code>.</li>
+</ul></li>
+<li>Поддержка массивов .NET высокой размерности.
+<ul>
+<li>Массивы .NET ранга 5 или выше теперь могут быть использованы кодом F #.</li>
+</ul></li>
+</ul>
+
+</section>
+
+<section >
+
+<h2>Библиотка FSharp.Core</h2>
 
 </section>
 
@@ -1248,6 +1221,12 @@
 <li>Средства Visual F# не поддерживают непосредственно каталоги в проектах.</li>
 <li>Был исправлен ряд системных ошибок проекта для улучшения поддержки каталогов, добавленной расширением Visual F# Power Tools.</li>
 </ul>
+
+</section>
+
+<section >
+
+<h2>Ссылки и материалы</h2>
 
 </section>
 
