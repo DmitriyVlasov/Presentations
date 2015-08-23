@@ -2,7 +2,7 @@
 - title : Review F# 4.0 
 - description : Новые возможности Fsharp 4.0
 - author : Dmitriy Vlasov
-- theme : Sky
+- theme : night
 - transition : default
 *)
 
