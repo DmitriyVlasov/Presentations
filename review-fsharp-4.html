@@ -193,6 +193,12 @@
 
 <p><img src="images/fsharp256.png" alt="FSharp" /></p>
 
+<p><a href="https://github.com/DmitriyVlasov">Дмитрий Власов</a></p>
+
+<p>Ведущий бизнес-аналитик АО "БТК групп"</p>
+
+<p><a href="https://plus.google.com/u/0/communities/115643868183582812348">Saint-Peterburg .NET Community</a>, 25 августа 2015</p>
+
 </section>
 
 <section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
@@ -200,7 +206,7 @@
 <h3>План презентации</h3>
 
 <ol>
-<li><strong>Введение</strong> — история разработки четвертой версии</li>
+<li><strong>История разработки</strong> четвертой версии F# в лицах</li>
 <li><strong>Язык</strong> — улучшения языка F# и среды исполнения</li>
 <li><strong>Библиотека FSharp.Core</strong> — улучшения основой библиотеки языка F#</li>
 <li><strong>Интегрированная среда разработки</strong> — новые функции Visual Studio 2015 и плагина "Visual F# Power Tools"</li>
@@ -213,7 +219,20 @@
 
 <section >
 
-<h2>Введение</h2>
+<h2>История разработки</h2>
+
+<p><img src="images/review-fsharp-4/contributor-team.png" alt="FSharp Community photo" />
+<aside class="notes">
+Первая крупная версия выпущенная совместно с сообществом F # 4.0.<br/>
+Произошли многочисленные изменения в культуре разработке языка от определения спецификации до разработки библиотек и инструментов.<br/>
+</aside></p>
+
+<aside class="notes">
+Язык дизайна разрабатывается в настоящее время в открытую, совместночерез fslang.uservoice.com.<br/>
+Реализация языка смещается на полностью открытые технологии.<br/>
+Во главу угла ставиться кросплатформенность и поддержка различных редакторов.<br/>
+Все это делается с помощью ряда авторов, в том числе Microsoft, Microsoft Research, членов F # Software Foundation и многие другие.<br/>
+</aside>
 
 </section>
 
@@ -1023,42 +1042,21 @@
 
 <section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
 
-<h3>Async расширения для <code>System.Net.WebClient</code></h3>
+<h3>Прочие изменения в ядре языка F#</h3>
 
+<ul>
+<li><strong>Async расширения для <code>System.Net.WebClient</code></strong>
 <ul>
 <li>Теперь доступны расширения <code>WebClient</code>: <code>AsyncDownloadFile</code> и <code>AsyncDownloadData</code>.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Улучшенная трассировка стека Async</h3>
-
+</ul></li>
+<li><strong>Улучшенная трассировка стека Async</strong>
 <ul>
 <li>Исключения, возникающие в асинхронных вычислениях F#, теперь содержат более понятные трассировки стека, упрощая диагностику проблем.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 3.1</h4>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h4>F# 4.0</h4>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Активный шаблон цитирования для значений System.Decimal</h3>
-
+</ul></li>
+<li><strong>Активный шаблон цитирования для значений System.Decimal</strong>
 <ul>
 <li>Добавлен активный шаблон для сопоставления значений константного литерала System.Decimal при цитировании.</li>
+</ul></li>
 </ul>
 
 </section>
@@ -1074,65 +1072,38 @@
 <p>В инструментах Visual F# представлены новые возможности и функции и реализован ряд исправлений.</p>
 
 <ul>
-<li>Интегрированная проверка наличия обновлений</li>
-<li>Автодополнение в инициализаторах объектов и именованных параметрах</li>
-<li>Отладка скриптов</li>
-<li>Метаданные сборки в шаблонах проектов</li>
-<li>Исправления ошибок, связанных с поддержкой работы с каталогами</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Интегрированная проверка наличия обновлений</h3>
-
+<li><strong>Интегрированная проверка наличия обновлений</strong>
 <ul>
 <li>Проекты F# теперь правильно сообщают свой статус "обновления" при сборке в Visual Studio.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Автодополнение в инициализаторах объектов и именованных параметрах</h3>
-
-<p>Теперь поддерживается автодополнение при нажатии сочетания клавиш <strong>Ctrl+Space</strong>:</p>
-
+</ul></li>
+<li><strong>Автодополнение в инициализаторах объектов и именованных параметрах</strong>
 <ul>
+<li>Теперь поддерживается автодополнение при нажатии сочетания клавиш <strong>Ctrl+Space</strong>:</li>
 <li>Дополнение свойств, задаваемых в выражениях инициализатора объекта;</li>
 <li>Дополнение именованных параметров в вызовах метода и конструктора.</li>
+</ul></li>
 </ul>
 
 </section>
 
 <section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
 
-<h3>Отладка скриптов</h3>
+<h2>Интегрированная среда разработки</h2>
 
+<ul>
+<li><strong>Отладка скриптов</strong>
 <ul>
 <li>Теперь возможна отладка скриптов F# непосредственно в отладчике Visual Studio.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Метаданные сборки в шаблонах проектов</h3>
-
+</ul></li>
+<li><strong>Метаданные сборки в шаблонах проектов</strong>
 <ul>
 <li>Все шаблоны проектов F# теперь имеют файл AssemblyInfo.fs, содержащий общие атрибуты метаданных уровня сборки.</li>
-</ul>
-
-</section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
-<h3>Исправления ошибок, связанных с поддержкой работы с каталогами</h3>
-
+</ul></li>
+<li><strong>Исправления ошибок, связанных с поддержкой работы с каталогами</strong>
 <ul>
 <li>Средства Visual F# не поддерживают непосредственно каталоги в проектах.</li>
 <li>Был исправлен ряд системных ошибок проекта для улучшения поддержки каталогов, добавленной расширением Visual F# Power Tools.</li>
+</ul></li>
 </ul>
 
 </section>
@@ -1141,7 +1112,75 @@
 
 <section >
 
+<section >
+
 <h2>Ссылки и материалы</h2>
+
+<ul>
+<li>Использованные материалы
+<ul>
+<li>Основные</li>
+<li>Обзоры F# 4.0 на английском языке</li>
+</ul></li>
+<li>Использованые инструменты</li>
+<li>Материалы для изучения F#</li>
+</ul>
+
+</section>
+
+<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
+
+<h3>Использованные материалы</h3>
+
+<h4>Основные</h4>
+
+<ul>
+<li><a href="https://github.com/Microsoft/visualfsharp/wiki/F%23-4.0-Status">Спецификация Visual Fsharp 4.0 на Github</a></li>
+<li><a href="https://www.visualstudio.com/ru-ru/news/vs2015-vs.aspx#fsharp">Замечания к выпуску Visual Studio 2015 глава Visual F# 4.0</a></li>
+<li><a href="https://www.visualstudio.com/en-us/news/vs2015-vs#fsharp">Release Notes Visual Studio 2015, chapter Visual F# 4.0</a></li>
+<li><a href="http://blogs.msdn.com/b/fsharpteam/archive/2014/11/12/announcing-a-preview-of-f-4-0-and-the-visual-f-tools-in-vs-2015.aspx">Visual F# team "Announcing a preview of F# 4.0 and the Visual F# Tools in VS 2015"</a></li>
+<li><a href="http://blogs.msdn.com/b/dotnet/archive/2015/04/29/rounding-out-visual-f-4-0-in-vs-2015-rc.aspx">Visual F# team "Rounding out Visual F# 4.0 in VS 2015 RC"</a></li>
+<li><a href="http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-the-rtm-of-visual-f-4-0.aspx">Dot Net blog "Announcing the RTM of Visual F# 4.0"</a></li>
+<li><a href="http://fsprojects.github.io/FSharp.Text.RegexProvider/">Библиотека FSharp.Text.RegexProvider</a></li>
+</ul>
+
+<h4>Обзоры F# 4.0 на английском языке</h4>
+
+<ul>
+<li><a href="https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2015-Final-Release-Event/Six-Quick-Picks-from-Visual-F-40">Lincoln Atkinson "Six Quick Picks from Visual F# 4.0"</a></li>
+<li><a href="http://www.i-programmer.info/news/89-net/8843-f-40-signals-a-culture-change.html">Kay Ewbank "F# 4.0 Signals A Culture Change"</a></li>
+<li><a href="http://www.wintellect.com/devcenter/jwood/exciting-new-things-in-f-4-0">Jonathan Wood "Exciting New Things In F# 4.0"</a></li>
+</ul>
+
+</section>
+
+<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
+
+<h3>Использованые инструменты</h3>
+
+<ul>
+<li>Материалы собраны с помощью <a href="http://www.onenote.com/">Onenote</a></li>
+<li>Веб-презентация оформлена маркдаун с помощью фреймворка <a href="http://fsprojects.github.io/FsReveal/">FsReveal</a></li>
+<li>Библиотека литературного программирования и документирования <a href="http://tpetricek.github.io/FSharp.Formatting/">FSharp.Formatting</a></li>
+<li>Скринкасты оформлены с помощью программы <a href="https://screentogif.codeplex.com/">Screen to Gif</a></li>
+</ul>
+
+</section>
+
+<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
+
+<h3>Материалы для изучения F#</h3>
+
+<ol>
+<li>Быстрый старт. Прекрасный ресурс для начального обзора F# <a href="http://www.tryfsharp.org).">http://www.tryfsharp.org).</a> (Работает только на рабочей станции, требует установленный Microsoft Silverlight)</li>
+<li>Лучшие матералы о практическом программировании на F# от основ до архитектуры приложений в функциональной парадигме от Скота Волшина(Scott Wlaschin) <a href="http://fsharpforfunandprofit.com">http://fsharpforfunandprofit.com</a></li>
+<li>Плагин для Visual Studio <a href="http://fsprojects.github.io/VisualFSharpPowerTools">Visual FSharp Power Tools</a></li>
+<li>Готовый каркас разработки приложений на базе F# <a href="http://fsprojects.github.io/ProjectScaffold/">Project Scaffold</a></li>
+<li>Домашная страница проекта F# <a href="http://fsharp.org">http://fsharp.org</a></li>
+<li>Еженедельник сообщества F# от Сергея Тихона <a href="https://sergeytihon.wordpress.com/category/f-weekly/">F# Weekly</a></li>
+</ol>
+
+</section>
 
 </section>
 
