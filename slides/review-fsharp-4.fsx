@@ -24,19 +24,21 @@
 ## Введение*)
 
 (*****
-## Язык*)
-
-(**---
-### Не обязательное корневое пространство имен `Microsoft`
-* При использовании или открытии модулей и пространств имен из `FSharp.Core` корневое пространство имен `Microsoft` теперь является необязательным.*)
-
-(** 
-#### F# 3.1 *)
-open Microsoft.FSharp.Quotations
-
-(**
-#### F# 4.0 *)
-open FSharp.Quotations
+## Язык
+* Конструкторы в качестве функций первого класса
+* Унификация `mutable` и `ref`
+* Статические параметры для методов поставщиков типов
+* Неявное цитирование аргументов метода
+* Расширенная грамматика препроцессора
+* Рациональная дробь в единицах измерения
+* Упрощенное использование единиц измерения в функциях в стиле `printf`
+* Свойства расширения в инициализаторах объектов
+* Наследование от нескольких экземпляров универсального интерфейса
+* Несколько свойств в атрибуте `StructuredFormatDisplay`
+* Поставщики типов, не допускающие значения `null`
+* Поддержка массивов .NET высокой размерности.
+* Не обязательное корневое пространство имен `Microsoft`
+ *)
 
 (**---
 ### Конструкторы в качестве функций первого класса
@@ -46,6 +48,7 @@ open FSharp.Quotations
 open System
 
 (**---
+### Конструкторы в качестве функций первого класса
 #### F# 3.1*)
 let favoriteSites = 
   [ "tryfsharp.org"; "fsharpforfunandprofit.com"; "fsharp.org" ] 
@@ -55,7 +58,7 @@ let favoriteSites =
 [ ('a', 1); ('b', 2); ('c', 3) ] 
 |> List.map ( fun (ch,n) -> String(ch,n) )
 
-(**---
+(**
 #### F# 4.0*)
 let favoriteSites' = 
   [ "tryfsharp.org"; "fsharpforfunandprofit.com"; "fsharp.org" ] 
@@ -71,6 +74,8 @@ let favoriteSites' =
 * Добавлено новое необязательное предупреждение, которое позволит разработчику получать уведомления о таком преобразовании.*)
 
 (**---
+### Унификация `mutable` и `ref`
+
 #### F# 3.1*)
 let sumSquares n = 
   let total = ref 0 
@@ -78,7 +83,7 @@ let sumSquares n =
   |> Seq.iter (fun i -> total := !total + i*i) 
   !total
 
-(**---
+(**
 #### F# 4.0*)
 let sumSquares' n = 
   let mutable total = 0 
@@ -94,14 +99,14 @@ let sumSquares' n =
 #I @"..\packages\FSharp.Text.RegexProvider\lib\net40"
 
 (**---
-#### F# 4.0*)
+### Статические параметры для методов поставщиков типов*)
 #r "FSharp.Text.RegexProvider.dll"
 open FSharp.Text.RegexProvider
 type PhoneRegex = Regex< @"(?<AreaCode>^\d{3})-(?<PhoneNumber>\d{3}-\d{4}$)">
 PhoneRegex().Match("904-601-9540").PhoneNumber.Value
 
 (**
-Тепень мы получили доступ к группам регулярного выражения. Вы можете посмотреть его с помощью Intellisense
+Получив доступ к группам регулярного выражения, мы можем посмотреть его с помощью Intellisense:
 
 ![Example static provider](images/review-fsharp-4/example-static-provider.gif)*)
 
@@ -110,7 +115,7 @@ PhoneRegex().Match("904-601-9540").PhoneNumber.Value
 * Аргументы метода типа Expr<'t> теперь могут быть прозрачно автоматически цитированы, передавая значение аргумента и выражения абстрактного синтаксического дерева, которое его создало.*)
 
 (**---
-#### F# 4.0*)
+### Неявное цитирование аргументов метода*)
 open FSharp.Quotations
 open FSharp.Quotations.Patterns
 
@@ -128,6 +133,7 @@ type TestQuotation =
     printfn "Выражение '%s' вычисляет '%O'" (toCode expr) value
 
 (**---
+### Неявное цитирование аргументов метода
 #### F# 4.0
 * Тестируем результат в интерактивной консоли: *)
 
@@ -145,7 +151,7 @@ TestQuotation.EchoExpression(Math.Max(x,y))
 ### Расширенная грамматика препроцессора
 * Логические операторы ||, && и ! можно использовать с группировкой круглыми скобками в директиве препроцессора #if.*)
 
-(**---
+(**
 #### F# 3.1*)
 #if TRACE
 #else
@@ -157,7 +163,7 @@ printfn "x is %d" x
 #endif
 #endif
 
-(**---
+(**
 #### F# 4.0*)
 #if TRACE || (DEBUG && !PRODUCTION)
 printfn "x is %d" x
@@ -167,15 +173,12 @@ printfn "x is %d" x
 ### Рациональная дробь в единицах измерения
 * Единицы измерения теперь поддерживают рациональные дроби, которые иногда используются в естественных науках, например, электрике.*)
 
-(**---
-#### F# 4.0*)
 open FSharp.Data.UnitSystems.SI.UnitSymbols 
  
 [<Measure>] type cm 
 [<Measure>] type Jones = cm Hz^(1/2) / W 
 
-(**---
-#### F# 4.0
+(**
 * Тестируем результат в интерактивной консоли: *)
 
 let testRational = 
@@ -196,12 +199,12 @@ val testRational : float<Jones> = 6.0
 (*** hide ***)
 [<Measure>] type ft
 
-(**---
+(**
 #### F# 3.1*)
 let howManyFoot (m : float<m>) = 
-  printfn "%f футов в %f метрах" ( float (m * 3.28<ft/m>) ) (float m) 
+  printfn "%f футов в %f метрах" (float (m * 3.28<ft/m>)) (float m) 
  
-(**---
+(**
 #### F# 4.0*)
 let howManyFoot' (m : float<m>) = 
   printfn "%f футов в %f метрах" (m * 3.28<ft/m>) m 
@@ -210,8 +213,6 @@ let howManyFoot' (m : float<m>) =
 ### Свойства расширения в инициализаторах объектов
 * Настраиваемые свойства расширения теперь можно задать в выражениях инициализатора объекта.*)
 
-(**---
-#### F# 4.0*)
 open System.Collections.Generic
 
 type Dictionary<'TKey, 'TValue> with
@@ -220,8 +221,7 @@ type Dictionary<'TKey, 'TValue> with
       this.Clear() 
       for key, value in items do this.Add(key, value) 
  
-(**---
-#### F# 4.0
+(**
 * Инициализируем значение за один шаг.*)
 let testDictionary = 
   Dictionary( capacity = 100,
@@ -231,8 +231,6 @@ let testDictionary =
 ### Наследование от нескольких экземпляров универсального интерфейса
 * Классы, создаваемые на F#, теперь могут наследовать от классов, которые реализуют несколько экземпляров универсального интерфейса.*)
 
-(**---
-#### F# 4.0*)
 type A( i : int) =  
   interface IComparable<int> with 
     member this.CompareTo(other) = i.CompareTo(other) 
@@ -247,15 +245,12 @@ type B( i : int) =
 ### Несколько свойств в атрибуте `StructuredFormatDisplay`
 * Спецификатор форматирования `%A`, настроенный с помощью артибута `StructuredFormatDisplay`, теперь может включать несколько свойств.*)
 
-(**---
-#### F# 4.0*)
 [<StructuredFormatDisplay("{Name}, появился в FSharp версии {Version}")>] 
 type Feature = { 
   Name    : string
   Version : float } 
 
-(**---
-#### F# 4.0
+(**
 * Тестируем результат в интерактивной консоли: *)
 
 (*** define-output:test-structured-format-display ***)
@@ -268,13 +263,23 @@ printfn "%A" feature
 
 (**---
 ### Прочие изменения в ядре языка F#
-* Поставщики типов, не допускающие значения `null`
+* **Поставщики типов, не допускающие значения `null`**
   * Поставщики типов теперь могут быть указаны как не допускающие значения `null` с помощью стандартного атрибута `AllowNullLiteral(false)`.
-* Поддержка массивов .NET высокой размерности.
-  * Массивы .NET ранга 5 или выше теперь могут быть использованы кодом F #.*)
+* **Поддержка массивов .NET высокой размерности.**
+  * Массивы .NET ранга 5 или выше теперь могут быть использованы кодом F #.
+* **Не обязательное корневое пространство имен `Microsoft`**
+  * При использовании или открытии модулей и пространств имен из FSharp.Core корневое пространство имен "Microsoft" теперь является необязательным.  
+  *)
 
 (*****
 ## Библиотка FSharp.Core
+* Нормализация API модулей Array, List и Seq
+* Расширен перечень функций в модуле Option
+* Синтаксис срезов для списков F#
+* Оптимизированное структурное хэширование
+* Оптимизированные неструктурные операторы сравнения
+* Async расширения для `System.Net.WebClient`
+* Улучшенная трассировка стека Async
 *)
 
 (**---
@@ -285,6 +290,7 @@ printfn "%A" feature
 *)
 
 (**---
+### Нормализация API модулей Array, List и Seq
 #### F# 3.1*)
 ["a";"b";"b";"c";"c";]
 |> List.map (fun s -> s.ToUpper())
@@ -292,13 +298,62 @@ printfn "%A" feature
 |> Seq.toList
 |> List.iter (printfn "Буква: %s")
 
-(**---
+(**
 #### F# 4.0*)
 ["a";"b";"b";"c";"c";]
 |> List.map (fun s -> s.ToUpper())
 |> List.distinct
 |> List.iter (printfn "Буква: %s")
+
+(**---
+### Расширен перечень функций в модуле Option
+* В модуль `Option` были добавлены новые функции для преобразования объектов в `null` и из `null`, а также значений `System.Nullable`.
  
+```
+Option.toNullable: option:'T option -> Nullable<'T> 
+Option.ofNullable: value:Nullable<'T> -> 'T option
+
+Option.ofObj: value:'T -> 'T option  when 'T : null 
+Option.toObj: value:'T option -> 'T when 'T : null 
+
+Operators.tryUnbox: value:obj -> 'T option 
+
+Operators.isNull: value:'T -> bool when 'T : null
+```
+* До F# 4.0 необходимо было подключать отдельную библиотеку, например [ExtCore](https://github.com/jack-pappas/ExtCore).
+*)
+
+(**---
+### Расширен перечень функций в модуле Option
+
+* Пример обработки не существующей переменой окружения:*)
+let envKey = "GHOST_OF_VARIABLE"
+let envValue = Environment.GetEnvironmentVariable(envKey)
+
+(** Можем обрабатать `null`:*)
+if envValue = null then
+  printfn "Переменная '%s' окружения не существует" envKey
+else 
+  printfn "Переменная окружения '%s' имеет значение '%s'" envKey envValue
+
+(** но, лучше сказать, что значение может быть, а может и нет:*)
+match Option.ofObj envValue with
+| None ->   printfn "Переменная '%s' окружения не существует" envKey
+| Some v -> printfn "Переменная окружения '%s' имеет значение '%s'" envKey v
+
+(**---
+### Синтаксис срезов для списков F#
+* Список F# теперь поддерживает синтаксис срезов для получения части списка.*)
+
+let alphabet = ['а'..'я']
+(*** define-output:test-list-slice ***)
+printfn "Первые 3 буквы алфавита %A, а последние %A"
+  (alphabet.[..2]) 
+  (alphabet.[29..])
+
+(** В результате получим *)
+(*** include-output:test-list-slice ***)
+
 (**---
 ### Оптимизированное структурное хэширование
 * Была проведена значительная работа по улучшению производительности универсального хэша сравнения для типов-примитивов.
@@ -310,6 +365,7 @@ printfn "%A" feature
 * Такая замена может обеспечить значительное повышение производительности при обработке типов с помощью пользовательских реализаций операторов, в частности типов значений.*)
 
 (**---
+### Оптимизированные неструктурные операторы сравнения
 #### F# 3.1*)
 module Tortoise = 
   let run () = 
@@ -319,10 +375,10 @@ module Tortoise =
     for i in 1 .. 10000000 do 
       result <- today = tomorrow
 
-(**---
+(**
 #### F# 4.0*)
 module Hare = 
-  open NonStructuralComparison 
+  open NonStructuralComparison // <- F# 4.0
   let run () = 
     let today = DateTime.Now 
     let tomorrow = today.AddDays(1.0) 
@@ -331,6 +387,7 @@ module Hare =
       result <- today = tomorrow
 
 (**---
+### Оптимизированные неструктурные операторы сравнения
 #### F# 3.1 vs 4.0
 *)
 
@@ -355,25 +412,9 @@ val it : unit = ()
 *)
 
 (**---
-### Синтаксис срезов для списков F#
-* Список F# теперь поддерживает синтаксис срезов для получения части списка.*)
-
-let alphabet = ['а'..'я']
-(*** define-output:test-list-slice ***)
-printfn "Первые 3 буквы алфавита %A, а последние %A"
-  (alphabet.[..2]) 
-  (alphabet.[29..])
-
-(** В результате получим *)
-(*** include-output:test-list-slice ***)
-
-(**---
 ### Async расширения для `System.Net.WebClient`
 * Теперь доступны расширения `WebClient`: `AsyncDownloadFile` и `AsyncDownloadData`.
 *)
-
-(**---
-#### F# 4.0*)
 
 (**---
 ### Улучшенная трассировка стека Async
@@ -385,42 +426,20 @@ printfn "Первые 3 буквы алфавита %A, а последние %A
 (**---
 #### F# 4.0*)
 
-
-(**---
-### Расширен перечень функций в модуле Option
-* В модуль `Option` были добавлены новые функции для преобразования объектов в `null` и из `null`, а также значений `System.Nullable`.
- 
-```
-Option.toNullable: option:'T option -> Nullable<'T> 
-Option.ofNullable: value:Nullable<'T> -> 'T option
-
-Option.ofObj: value:'T -> 'T option  when 'T : null 
-Option.toObj: value:'T option -> 'T when 'T : null 
-
-Operators.tryUnbox: value:obj -> 'T option 
-
-Operators.isNull: value:'T -> bool when 'T : null
-```
-* До F# 4.0 необходимо было подключать отдельную библиотеку, например [ExtCore](https://github.com/jack-pappas/ExtCore).
-*)
-
-(**---
-#### F# 4.0
-
-* В первом случае мы получим `null`, а во втором `None`.*)
-let nullEnvValue = Environment.GetEnvironmentVariable("GHOST_OF_VARIABLE")
-let optionEnvValue = Option.ofObj nullEnvValue
-
 (**---
 ### Активный шаблон цитирования для значений System.Decimal 
 * Добавлен активный шаблон для сопоставления значений константного литерала System.Decimal при цитировании.*)
 
-(**---
-#### F# 4.0*)
-
 (*****
 ## Интегрированная среда разработки
-В инструментах Visual F# представлены новые возможности и функции и реализован ряд исправлений.*)
+В инструментах Visual F# представлены новые возможности и функции и реализован ряд исправлений.
+
+* Интегрированная проверка наличия обновлений
+* Автодополнение в инициализаторах объектов и именованных параметрах
+* Отладка скриптов
+* Метаданные сборки в шаблонах проектов
+* Исправления ошибок, связанных с поддержкой работы с каталогами
+*)
 
 (**---
 ### Интегрированная проверка наличия обновлений 
