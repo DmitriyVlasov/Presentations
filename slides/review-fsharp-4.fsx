@@ -10,11 +10,11 @@
 # Обзор F# 4.0
 ![FSharp](images/fsharp256.png)
 
-[Дмитрий Власов](https://github.com/DmitriyVlasov)
+[Дмитрий Власов](https://google.com/+DmitriyVlasov) / [@DmitriyVlasov](https://github.com/DmitriyVlasov)
 
 Ведущий бизнес-аналитик АО "БТК групп"
 
-[Saint-Peterburg .NET Community](https://plus.google.com/u/0/communities/115643868183582812348), 25 августа 2015
+[Saint-Peterburg .NET Community](https://plus.google.com/u/0/communities/115643868183582812348), 25 августа 2015 ([видео](https://youtu.be/iOItE4hR6jg))
 *)
 
 (**---
@@ -24,6 +24,7 @@
 1. **Библиотека FSharp.Core** — улучшения основой библиотеки языка F#
 1. **Интегрированная среда разработки** — новые функции Visual Studio 2015 и плагина "Visual F# Power Tools"
 1. **Ссылки и материалы** — ссылки на использованые в презентации материалы и полезные сайты для старта изучения F#
+
 *)
 
 (*****
