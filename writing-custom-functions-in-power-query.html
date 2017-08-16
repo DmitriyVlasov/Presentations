@@ -1,0 +1,450 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Presentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="unkown">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<section author="Dmitriy Vlasov" description="Разработка пользовательских функций в Power Query" theme="night" title="Writing Custom Functions in Power Query" transition="default">
+<h2>Разработка пользовательских функций в Power Query</h2>
+<p><a href="http://DmitriyVlasov.ru">Дмитрий Власов</a>,</p>
+<p>Ведущий ERP разработчик в Awara IT Solutions</p>
+<p>Первая встреча <a href="https://www.pbiusergroup.com/communities/community-home?CommunityKey=f6f83caa-78fb-4a11-92fb-522457064f77">группы пользователей Microsoft Power BI в Санкт-Петербурге</a></p>
+<p>23 августа 2017</p>
+</section>
+<section >
+<h3>План презентации</h3>
+<ol>
+<li>Основные компоненты языка Power Query</li>
+<li>Библиотека Power Query</li>
+<li>Средства разработки</li>
+<li>Ссылки и материалы — ссылки на использованные в презентации материалы и полезные сайты для старта изучения Power Query</li>
+</ol>
+</section>
+<section >
+<h2>Основные компоненты языка Power Query</h2>
+<ul>
+<li>Обзор</li>
+<li>Синтаксис</li>
+<li>Базовые типы данных</li>
+<li>Базовые функции</li>
+</ul>
+</section>
+<section >
+<h3>Обзор</h3>
+<p><strong>Power Query</strong> чистый <em>(pure)</em>, поддерживающий функции высшего порядка <em>(higer-order)</em>, динамически тимизированный <em>(dynamically typed)</em>, частично ленивый <em>(partially lazy)</em> функциональный язык программирования.</p>
+</section>
+<section >
+<h3>Обзор</h3>
+<h4>Основные элементы</h4>
+<ul>
+<li><strong>Выражение</strong> <em>(Expression)</em> это формула вычисления.  Выражения имеют имя.</li>
+<li><strong>Значение</strong> <em>(Value)</em>  это результат вычисления выражения. Значение имеет тип.</li>
+<li><strong>Запрос</strong> Вычисляет выражения и возвращает значение.</li>
+</ul>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Комментарии</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">/*Многострочные комментарии*/
+
+// Однострочный комментарий
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Простейшие выражения</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">42 // Значение
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">6 * 7 // Произведение двух чисел
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">#date // простейшая функция создания даты
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">#date(2017,08,23) // Значение даты
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Выражение let</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let           // Обязательное ключевое слово.
+    A = 1,    // Далее с новой строки одно
+    B = 2,    // или несколько выражений
+    C = A + B // разделенных запятыми.
+in            // Обязательное ключевое слово.
+  C           // Возвращаемый результат, вычисляется перед возвратом.
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Имена выражений</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let 
+  // Имя выражения только на английском языке без пробелов:
+  NumberValue = 42,
+
+  // Имя выражения в форме человеко-читаемого предложения 
+  // на любом языке любой длины:
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
+
+in
+  #"Ответ на главный вопрос жизни, вселенной и всего такого"
+
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Условное выражение</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  currentAnswer = 10,
+
+  // Если текущее значение равно 42, то вернуть бесконечность иначе вернуть пусто:
+  nextAnswer = 
+      if currentAnswer = 42
+    then #infinity // Бесконечность
+    else null      // Пусто
+in
+  nextAnswer
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Пример функции</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let 
+  // Имя выражения только на английском языке без пробелов
+  NumberValue = 42,
+
+  // Имя выражения в форме человеко-читаемого предложения.
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
+
+  // Функция
+  getNextAnswer = (currentAnswer) =&gt; 
+    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
+    then #infinity // Бесконечность
+    else #nan // Не число
+  
+in
+  getNextAnswer
+
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Условное выражение</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let 
+  // Имя выражения только на английском языке без пробелов
+  NumberValue = 42,
+
+  // Имя выражения в форме человеко-читаемого предложения.
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
+
+  // Функция
+  getNextAnswer = (currentAnswer) =&gt; 
+    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
+    then #infinity // Бесконечность
+    else #nan // Не число
+  
+in
+  getNextAnswer
+
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Примитивные типы данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>logical</p></td>
+<td><p><code>true</code></p></td>
+<td><p><code>false</code></p></td>
+</tr>
+<tr class="even">
+<td><p>text</p></td>
+<td><p><code>"Hello"</code></p></td>
+<td><p><code>"Привет"</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>number</p></td>
+<td><p><code>-42</code></p></td>
+<td><p><code>3.14</code></p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Типы даты времени</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>time</p></td>
+<td><p><code>#time(21,35,00)</code></p></td>
+</tr>
+<tr class="even">
+<td><p>date</p></td>
+<td><p><code>#date(2017,08,23)</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>datetime</p></td>
+<td><p><code>#datetime(2017,08,23 21,35,00)</code></p></td>
+</tr>
+<tr class="even">
+<td><p>datetimezone</p></td>
+<td><p><code>#datetimetzone(2017,08,23 21,35,00 09,00)</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>duration</p></td>
+<td><p><code>#duration(0,1,30,0)</code></p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Структуры данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>list</p></td>
+<td><p><code>{1, 2, 3}</code></p></td>
+</tr>
+<tr class="even">
+<td><p>record</p></td>
+<td><p><code>[FirstName = "Олег", LastName = "Попов"]</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>table</p></td>
+<td><p><code>#table( { "Группа", "Резус" }, { {1, "+"}, {2, "-"} } )</code></p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Особые типы данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+<th><p>Примечание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>null</p></td>
+<td><p><code>null</code></p></td>
+<td><p>Отсутствие значения.</p></td>
+</tr>
+<tr class="even">
+<td><p>any</p></td>
+<td></td>
+<td><p>Любой тип данных</p></td>
+</tr>
+<tr class="odd">
+<td><p>binary</p></td>
+<td><p><code>#binary("AQID")</code></p></td>
+<td><p>Двоичные данные</p></td>
+</tr>
+<tr class="even">
+<td><p>function</p></td>
+<td><p><code>(x) =&gt; x + 1</code></p></td>
+<td><p>Функциональный тип данных</p></td>
+</tr>
+<tr class="odd">
+<td><p>type</p></td>
+<td><p><code>type { number }</code></p></td>
+<td><p>Тип данных описывающий тип ;-).</p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Метаданные</h3>
+<ul>
+<li><code>#sections</code> - Возвращает запись содержащая ключ имя запроса и значение возвращаемое запросом значение в текущем документе.</li>
+<li><code>#shared</code> - Возвращает все имена находящиеся в текущем окружении.</li>
+</ul>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+

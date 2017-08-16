@@ -38,7 +38,7 @@
     <script language="javascript" type="text/javascript">
         function init()
         {
-            websocket = new WebSocket("ws://localhost:8083/websocket");
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
             websocket.onmessage = function(evt) { location.reload(); };
         }
         window.addEventListener("load", init, false);
@@ -186,25 +186,15 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-
 <section >
-
 <h1>Обзор F# 4.0</h1>
-
 <p><img src="images/fsharp256.png" alt="FSharp" /></p>
-
 <p><a href="https://google.com/+DmitriyVlasov">Дмитрий Власов</a> / <a href="https://github.com/DmitriyVlasov">@DmitriyVlasov</a></p>
-
 <p>Ведущий бизнес-аналитик АО "БТК групп"</p>
-
 <p><a href="https://plus.google.com/u/0/communities/115643868183582812348">Saint-Peterburg .NET Community</a>, 25 августа 2015 (<a href="https://youtu.be/iOItE4hR6jg">видео</a>)</p>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>План презентации</h3>
-
 <ol>
 <li><strong>История разработки</strong> четвертой версии F# в лицах</li>
 <li><strong>Язык</strong> — улучшения языка F# и среды исполнения</li>
@@ -212,36 +202,25 @@
 <li><strong>Интегрированная среда разработки</strong> — новые функции Visual Studio 2015 и плагина "Visual F# Power Tools"</li>
 <li><strong>Ссылки и материалы</strong> — ссылки на использованые в презентации материалы и полезные сайты для старта изучения F#</li>
 </ol>
-
 </section>
-
 </section>
-
 <section >
-
 <h2>История разработки</h2>
-
 <p><img src="images/review-fsharp-4/contributor-team.png" alt="FSharp Community photo" />
 <aside class="notes">
 Первая крупная версия выпущенная совместно с сообществом F # 4.0.<br/>
 Произошли многочисленные изменения в культуре разработке языка от определения спецификации до разработки библиотек и инструментов.<br/>
 </aside></p>
-
 <aside class="notes">
 Язык дизайна разрабатывается в настоящее время в открытую, совместночерез fslang.uservoice.com.<br/>
 Реализация языка смещается на полностью открытые технологии.<br/>
 Во главу угла ставиться кросплатформенность и поддержка различных редакторов.<br/>
 Все это делается с помощью ряда авторов, в том числе Microsoft, Microsoft Research, членов F # Software Foundation и многие другие.<br/>
 </aside>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Язык</h2>
-
 <ul>
 <li>Конструкторы в качестве функций первого класса</li>
 <li>Унификация <code>mutable</code> и <code>ref</code></li>
@@ -257,25 +236,16 @@
 <li>Поддержка массивов .NET высокой размерности.</li>
 <li>Не обязательное корневое пространство имен <code>Microsoft</code></li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Конструкторы в качестве функций первого класса</h3>
-
 <ul>
 <li>Имена классов теперь можно использовать как значения функции первого класса, представляющие конструкторы для этого класса.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Конструкторы в качестве функций первого класса</h3>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -294,9 +264,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -315,26 +283,17 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Унификация <code>mutable</code> и <code>ref</code></h3>
-
 <ul>
 <li>Синтаксис <code>mutable</code> теперь можно использовать везде, а записанные значения при необходимости автоматически преобразуются компилятором в значения на основе кучи <code>ref</code>.</li>
 <li>Добавлено новое необязательное предупреждение, которое позволит разработчику получать уведомления о таком преобразовании.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Унификация <code>mutable</code> и <code>ref</code></h3>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -349,9 +308,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -366,23 +323,15 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Статические параметры для методов поставщиков типов</h3>
-
 <ul>
 <li>Отдельные методы, предоставленные поставщиками типов, теперь могут указывать статические параметры.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Статические параметры для методов поставщиков типов</h3>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -395,27 +344,17 @@
 </code></pre></td>
 </tr>
 </table>
-
 <p>Получив доступ к группам регулярного выражения, мы можем посмотреть его с помощью Intellisense:</p>
-
 <p><img src="images/review-fsharp-4/example-static-provider.gif" alt="Example static provider" /></p>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Неявное цитирование аргументов метода</h3>
-
 <ul>
 <li>Аргументы метода типа Expr<'t> теперь могут быть прозрачно автоматически цитированы, передавая значение аргумента и выражения абстрактного синтаксического дерева, которое его создало.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Неявное цитирование аргументов метода</h3>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -450,19 +389,13 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Неявное цитирование аргументов метода</h3>
-
 <h4>F# 4.0</h4>
-
 <ul>
 <li>Тестируем результат в интерактивной консоли:</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -475,27 +408,19 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>В результате получим:</li>
 </ul>
-
 <table class="pre"><tr><td><pre><code>Выражение 'x' вычисляет '42'
 Выражение 'y' вычисляет '93'
 Выражение 'Math.Max(x,y)' вычисляет '93'</code></pre></td></tr></table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Расширенная грамматика препроцессора</h3>
-
 <ul>
 <li>Логические операторы ||, &amp;&amp; и ! можно использовать с группировкой круглыми скобками в директиве препроцессора #if.</li>
 </ul>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -518,9 +443,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -531,17 +454,12 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Рациональная дробь в единицах измерения</h3>
-
 <ul>
 <li>Единицы измерения теперь поддерживают рациональные дроби, которые иногда используются в естественных науках, например, электрике.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -554,11 +472,9 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>Тестируем результат в интерактивной консоли:</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
@@ -567,28 +483,20 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>В результате получим:</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip"><code lang="fsi">val testRational : float&lt;Jones&gt; = 6.0
 </code></pre></td></tr></table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Упрощенное использование единиц измерения в функциях в стиле <code>printf</code></h3>
-
 <ul>
 <li>Числовые значения в единицах измерения теперь без проблем работают с числовыми спецификаторами формата printf, не требуя приведения едениц измерения к числу.</li>
 </ul>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -599,9 +507,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
@@ -610,17 +516,12 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Свойства расширения в инициализаторах объектов</h3>
-
 <ul>
 <li>Настраиваемые свойства расширения теперь можно задать в выражениях инициализатора объекта.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -641,11 +542,9 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>Инициализируем значение за один шаг.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -656,17 +555,12 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Наследование от нескольких экземпляров универсального интерфейса</h3>
-
 <ul>
 <li>Классы, создаваемые на F#, теперь могут наследовать от классов, которые реализуют несколько экземпляров универсального интерфейса.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -689,17 +583,12 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Несколько свойств в атрибуте <code>StructuredFormatDisplay</code></h3>
-
 <ul>
 <li>Спецификатор форматирования <code>%A</code>, настроенный с помощью артибута <code>StructuredFormatDisplay</code>, теперь может включать несколько свойств.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -712,11 +601,9 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>Тестируем результат в интерактивной консоли:</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
@@ -725,44 +612,38 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>В результате получим:</li>
 </ul>
-
 <table class="pre"><tr><td><pre><code>Расширенный атрибут StructuredFormatDisplay, появился в FSharp версии 4.0</code></pre></td></tr></table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Прочие изменения в ядре языка F#</h3>
-
 <ul>
-<li><strong>Поставщики типов, не допускающие значения <code>null</code></strong>
+<li>
+<strong>Поставщики типов, не допускающие значения <code>null</code></strong>
 <ul>
 <li>Поставщики типов теперь могут быть указаны как не допускающие значения <code>null</code> с помощью стандартного атрибута <code>AllowNullLiteral(false)</code>.</li>
-</ul></li>
-<li><strong>Поддержка массивов .NET высокой размерности.</strong>
+</ul>
+</li>
+<li>
+<strong>Поддержка массивов .NET высокой размерности.</strong>
 <ul>
 <li>Массивы .NET ранга 5 или выше теперь могут быть использованы кодом F #.</li>
-</ul></li>
-<li><strong>Не обязательное корневое пространство имен <code>Microsoft</code></strong>
+</ul>
+</li>
+<li>
+<strong>Не обязательное корневое пространство имен <code>Microsoft</code></strong>
 <ul>
 <li>При использовании или открытии модулей и пространств имен из FSharp.Core корневое пространство имен "Microsoft" теперь является необязательным.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Библиотка FSharp.Core</h2>
-
 <ul>
 <li>Нормализация API модулей Array, List и Seq</li>
 <li>Расширен перечень функций в модуле Option</li>
@@ -772,27 +653,18 @@
 <li>Async расширения для <code>System.Net.WebClient</code></li>
 <li>Улучшенная трассировка стека Async</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Нормализация API модулей Array, List и Seq</h3>
-
 <ul>
 <li>Набор функций обработки коллекций теперь будет согласованным в модулях Array, List и Seq (за исключением случаев, когда API-интерфейсы неприменимы к определенным типам).</li>
 <li>Реализации функций оптимизированы с учетом особенностей каждого типа: Array, List, Seq.</li>
 <li>См. подробнее: <a href="https://github.com/fsharp/FSharpLangDesign/blob/master/FSharp-4.0/StaticMethodArgumentsDesignAndSpec.md">"Regularizing and extending the List, Array and Seq modules"</a></li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Нормализация API модулей Array, List и Seq</h3>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -807,9 +679,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -822,17 +692,12 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Расширен перечень функций в модуле Option</h3>
-
 <ul>
 <li>В модуль <code>Option</code> были добавлены новые функции для преобразования объектов в <code>null</code> и из <code>null</code>, а также значений <code>System.Nullable</code>.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -855,21 +720,15 @@
 </code></pre></td>
 </tr>
 </table>
-
 <ul>
 <li>До F# 4.0 необходимо было подключать отдельную библиотеку, например <a href="https://github.com/jack-pappas/ExtCore">ExtCore</a>.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Расширен перечень функций в модуле Option</h3>
-
 <ul>
 <li>Пример обработки не существующей переменой окружения:</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
@@ -878,9 +737,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <p>Можем обрабатать <code>null</code>:</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -893,9 +750,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <p>но, лучше сказать, что значение может быть, а может и нет:</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -906,24 +761,18 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Синтаксис срезов для списков F#</h3>
-
 <ul>
 <li>Список F# теперь поддерживает синтаксис срезов для получения части списка.</li>
 </ul>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs123', 269)" onmouseover="showTip(event, 'fs123', 269)" class="i">alphabet</span> <span class="o">=</span> [<span class="s">&#39;а&#39;</span><span class="o">..</span><span class="s">&#39;я&#39;</span>]
 </code></pre></td>
 </tr>
 </table>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -934,41 +783,26 @@
 </code></pre></td>
 </tr>
 </table>
-
 <p>В результате получим</p>
-
 <table class="pre"><tr><td><pre><code>Первые 3 буквы алфавита ['а'; 'б'; 'в'], а последние ['э'; 'ю'; 'я']</code></pre></td></tr></table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Оптимизированное структурное хэширование</h3>
-
 <ul>
 <li>Была проведена значительная работа по улучшению производительности универсального хэша сравнения для типов-примитивов.</li>
 <li>Это позволило повысить производительность функций модулей Arrray, List, и Seq, таких как "distinct" и "groupBy".</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Оптимизированные неструктурные операторы сравнения</h3>
-
 <ul>
 <li>Модуль <code>NonStructuralComparison</code> из пространства имен <code>FSharp.Core.Operators</code> теперь может открываться, заменяя операторы структурного сравнения F# по умолчанию на более эффективные неструктурные операторы.</li>
 <li>Такая замена может обеспечить значительное повышение производительности при обработке типов с помощью пользовательских реализаций операторов, в частности типов значений.</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Оптимизированные неструктурные операторы сравнения</h3>
-
 <h4>F# 3.1</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -987,9 +821,7 @@
 </code></pre></td>
 </tr>
 </table>
-
 <h4>F# 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -1010,15 +842,10 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Оптимизированные неструктурные операторы сравнения</h3>
-
 <h4>F# 3.1 vs 4.0</h4>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -1037,103 +864,95 @@
 </code></pre></td>
 </tr>
 </table>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Прочие изменения в ядре языка F#</h3>
-
 <ul>
-<li><strong>Async расширения для <code>System.Net.WebClient</code></strong>
+<li>
+<strong>Async расширения для <code>System.Net.WebClient</code></strong>
 <ul>
 <li>Теперь доступны расширения <code>WebClient</code>: <code>AsyncDownloadFile</code> и <code>AsyncDownloadData</code>.</li>
-</ul></li>
-<li><strong>Улучшенная трассировка стека Async</strong>
+</ul>
+</li>
+<li>
+<strong>Улучшенная трассировка стека Async</strong>
 <ul>
 <li>Исключения, возникающие в асинхронных вычислениях F#, теперь содержат более понятные трассировки стека, упрощая диагностику проблем.</li>
-</ul></li>
-<li><strong>Активный шаблон цитирования для значений System.Decimal</strong>
+</ul>
+</li>
+<li>
+<strong>Активный шаблон цитирования для значений System.Decimal</strong>
 <ul>
 <li>Добавлен активный шаблон для сопоставления значений константного литерала System.Decimal при цитировании.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Интегрированная среда разработки</h2>
-
 <p>В инструментах Visual F# представлены новые возможности и функции и реализован ряд исправлений.</p>
-
 <ul>
-<li><strong>Интегрированная проверка наличия обновлений</strong>
+<li>
+<strong>Интегрированная проверка наличия обновлений</strong>
 <ul>
 <li>Проекты F# теперь правильно сообщают свой статус "обновления" при сборке в Visual Studio.</li>
-</ul></li>
-<li><strong>Автодополнение в инициализаторах объектов и именованных параметрах</strong>
+</ul>
+</li>
+<li>
+<strong>Автодополнение в инициализаторах объектов и именованных параметрах</strong>
 <ul>
 <li>Теперь поддерживается автодополнение при нажатии сочетания клавиш <strong>Ctrl+Space</strong>:</li>
 <li>Дополнение свойств, задаваемых в выражениях инициализатора объекта;</li>
 <li>Дополнение именованных параметров в вызовах метода и конструктора.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h2>Интегрированная среда разработки</h2>
-
 <ul>
-<li><strong>Отладка скриптов</strong>
+<li>
+<strong>Отладка скриптов</strong>
 <ul>
 <li>Теперь возможна отладка скриптов F# непосредственно в отладчике Visual Studio.</li>
-</ul></li>
-<li><strong>Метаданные сборки в шаблонах проектов</strong>
+</ul>
+</li>
+<li>
+<strong>Метаданные сборки в шаблонах проектов</strong>
 <ul>
 <li>Все шаблоны проектов F# теперь имеют файл AssemblyInfo.fs, содержащий общие атрибуты метаданных уровня сборки.</li>
-</ul></li>
-<li><strong>Исправления ошибок, связанных с поддержкой работы с каталогами</strong>
+</ul>
+</li>
+<li>
+<strong>Исправления ошибок, связанных с поддержкой работы с каталогами</strong>
 <ul>
 <li>Средства Visual F# не поддерживают непосредственно каталоги в проектах.</li>
 <li>Был исправлен ряд системных ошибок проекта для улучшения поддержки каталогов, добавленной расширением Visual F# Power Tools.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Ссылки и материалы</h2>
-
 <ul>
-<li>Использованные материалы
+<li>
+Использованные материалы
 <ul>
 <li>Основные</li>
 <li>Обзоры F# 4.0 на английском языке</li>
-</ul></li>
+</ul>
+</li>
 <li>Использованые инструменты</li>
 <li>Материалы для изучения F#</li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Использованные материалы</h3>
-
 <h4>Основные</h4>
-
 <ul>
 <li><a href="https://github.com/Microsoft/visualfsharp/wiki/F%23-4.0-Status">Спецификация Visual Fsharp 4.0 на Github</a></li>
 <li><a href="https://www.visualstudio.com/ru-ru/news/vs2015-vs.aspx#fsharp">Замечания к выпуску Visual Studio 2015 глава Visual F# 4.0</a></li>
@@ -1143,34 +962,24 @@
 <li><a href="http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-the-rtm-of-visual-f-4-0.aspx">Dot Net blog "Announcing the RTM of Visual F# 4.0"</a></li>
 <li><a href="http://fsprojects.github.io/FSharp.Text.RegexProvider/">Библиотека FSharp.Text.RegexProvider</a></li>
 </ul>
-
 <h4>Обзоры F# 4.0 на английском языке</h4>
-
 <ul>
 <li><a href="https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2015-Final-Release-Event/Six-Quick-Picks-from-Visual-F-40">Lincoln Atkinson "Six Quick Picks from Visual F# 4.0"</a></li>
 <li><a href="http://www.i-programmer.info/news/89-net/8843-f-40-signals-a-culture-change.html">Kay Ewbank "F# 4.0 Signals A Culture Change"</a></li>
 <li><a href="http://www.wintellect.com/devcenter/jwood/exciting-new-things-in-f-4-0">Jonathan Wood "Exciting New Things In F# 4.0"</a></li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Использованые инструменты</h3>
-
 <ul>
 <li>Материалы собраны с помощью <a href="http://www.onenote.com/">Onenote</a></li>
 <li>Веб-презентация оформлена маркдаун с помощью фреймворка <a href="http://fsprojects.github.io/FsReveal/">FsReveal</a></li>
 <li>Библиотека литературного программирования и документирования <a href="http://tpetricek.github.io/FSharp.Formatting/">FSharp.Formatting</a></li>
 <li>Скринкасты оформлены с помощью программы <a href="https://screentogif.codeplex.com/">Screen to Gif</a></li>
 </ul>
-
 </section>
-
-<section author="Dmitriy Vlasov" description="Новые возможности Fsharp 4.0" theme="night" title="Review F# 4.0" transition="default">
-
+<section >
 <h3>Материалы для изучения F#</h3>
-
 <ol>
 <li>Быстрый старт. Прекрасный ресурс для начального обзора F# <a href="http://www.tryfsharp.org).">http://www.tryfsharp.org).</a> (Работает только на рабочей станции, требует установленный Microsoft Silverlight)</li>
 <li>Лучшие матералы о практическом программировании на F# от основ до архитектуры приложений в функциональной парадигме от Скота Волшина(Scott Wlaschin) <a href="http://fsharpforfunandprofit.com">http://fsharpforfunandprofit.com</a></li>
@@ -1179,11 +988,8 @@
 <li>Домашная страница проекта F# <a href="http://fsharp.org">http://fsharp.org</a></li>
 <li>Еженедельник сообщества F# от Сергея Тихона <a href="https://sergeytihon.wordpress.com/category/f-weekly/">F# Weekly</a></li>
 </ol>
-
 </section>
-
 </section>
-
 
 
         </div>
