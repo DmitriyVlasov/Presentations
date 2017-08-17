@@ -1,5 +1,5 @@
 - title : Writing Custom Functions in Power Query
-- description : Разработка пользовательских функций в Power Query
+- description : Разработка пользовательских функций в Power Query (Черновик)
 - author : Dmitriy Vlasov
 - theme : night
 - transition : default
