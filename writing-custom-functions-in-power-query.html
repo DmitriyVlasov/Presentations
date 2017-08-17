@@ -58,230 +58,130 @@
 <p>23 августа 2017</p>
 </section>
 <section >
-<h3>План презентации</h3>
+<h2>Содержание</h2>
+</section>
+<section >
+<h2>Содержание</h2>
 <ol>
+<li>Зачем писать свои функции?</li>
 <li>Основные компоненты языка Power Query</li>
-<li>Библиотека Power Query</li>
+<li>Базовая библиотека языка Power Query</li>
 <li>Средства разработки</li>
-<li>Ссылки и материалы — ссылки на использованные в презентации материалы и полезные сайты для старта изучения Power Query</li>
+<li>Ссылки на источники и дополнительные материалы</li>
 </ol>
+<aside class="notes">
+Рекомендации по плану от Максима Зеленского:<br/>
++ 1. М - язык функциональный (почти всё на встроенных функциях).<br/>
++ 2. Имена, выражения, типы<br/>
++ 3. Функция - выражение, тип данных, и отличие от типа результата вычисленной функции.<br/>
+4. Когда нужны функции. <br/>
+5. Встроенные итераторы и each keyword<br/>
+6. Передача аргументов между вложенными функциями<br/>
+7. Примеры inline функций и именованных функций.<br/>
+</aside>
+</section>
+</section>
+<section >
+<h2>Зачем писать свои функции?</h2>
+</section>
+<section >
+<section >
+<h2>Основные компоненты языка Power Query</h2>
 </section>
 <section >
 <h2>Основные компоненты языка Power Query</h2>
 <ul>
 <li>Обзор</li>
-<li>Синтаксис</li>
 <li>Базовые типы данных</li>
-<li>Базовые функции</li>
+<li>Синтаксис</li>
 </ul>
 </section>
 <section >
 <h3>Обзор</h3>
-<p><strong>Power Query</strong> чистый <em>(pure)</em>, поддерживающий функции высшего порядка <em>(higer-order)</em>, динамически типизированный <em>(dynamically typed)</em>, частично ленивый <em>(partially lazy)</em> функциональный язык программирования.</p>
+<h4>Формула языка</h4>
+<p>Язык программирования Power Query:</p>
+<ul>
+<li><strong><a href="https://ru.wikipedia.org/wiki/Чистота_языка_программирования">Pure</a></strong> - чистый,</li>
+<li><strong><a href="https://ru.wikipedia.org/wiki/Динамическая_типизация">Dynamically typed</a></strong> - динамически типизированный,</li>
+<li><strong><a href="https://ru.wikipedia.org/wiki/Функция_высшего_порядка">Higer-order</a></strong> - поддерживает функции высшего порядка,</li>
+<li><strong><a href="https://ru.wikipedia.org/wiki/Ленивые_вычисления">Partially lazy</a></strong> - частично ленивый,</li>
+<li><strong><a href="https://ru.wikipedia.org/wiki/Функциональное_программирование">Functional</a></strong> - функциональный.</li>
+</ul>
+<aside class="notes">
+Чистый - означает, Побочные эффекты отсутствуют.<br/>
+Динамически типизированный - означает, что типы выражений определяются в момент исполнения.<br/>
+Функции высшего порядка - это функции использующие в качестве параметра другие функции. Подобные ситуации мы будем встречать далее на каждом шагу при работе с языком Power Query.<br/>
+Ленивый - означает, что вычисления происходят так поздно на сколько это возможно. Ленивость языка программирования позволяет делать такие вещи как бесконечные списки, а значит как следствие например удобно поддерживать подключения к базам данных и сервисам по требованию. Или делать сложные вычисления только в тот момент когда это понадобиться.<br/>
+Функциональный - означает, что процесс вычисления трактуется как вычисление значений функций в математическом понимании последних.<br/>
+</aside>
 </section>
 <section >
 <h3>Обзор</h3>
-<h4>Основные элементы</h4>
+<h4>Определение основных элементов языка</h4>
 <ul>
-<li><strong>Выражение</strong> <em>(Expression)</em> это формула вычисления.  Выражения имеют имя.</li>
+<li><strong>Идентификатор</strong> <em>(Identifier)</em> это имя.</li>
+<li><strong>Выражение</strong> <em>(Expression)</em> это формула вычисления. Выражения имеют имя.</li>
 <li><strong>Значение</strong> <em>(Value)</em>  это результат вычисления выражения. Значение имеет тип.</li>
+<li><strong>Тип</strong> <em>(Type)</em> это особый вид значения. Тип может содержать метаданные.</li>
+<li><strong>Функция</strong> <em>(Function)</em> это особый вид значения. Обеспечивает основу стандартной библиотеки и позволяет создавать собственные функции.</li>
 <li><strong>Запрос</strong> Вычисляет выражения и возвращает значение.</li>
 </ul>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Комментарии</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">/*Многострочные комментарии*/
-
-// Однострочный комментарий
-</code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Простейшие выражения</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">42 // Значение
-</code></pre></td></tr></table>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">6 * 7 // Произведение двух чисел
-</code></pre></td></tr></table>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">#date // простейшая функция создания даты
-</code></pre></td></tr></table>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">#date(2017,08,23) // Значение даты
-</code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Выражение let</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let           // Обязательное ключевое слово.
-    A = 1,    // Далее с новой строки одно
-    B = 2,    // или несколько выражений
-    C = A + B // разделенных запятыми.
-in            // Обязательное ключевое слово.
-  C           // Возвращаемый результат, вычисляется перед возвратом.
-</code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Имена выражений</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let
-  // Имя выражения только на английском языке без пробелов:
-  NumberValue = 42,
-
-  // Имя выражения в форме человеко-читаемого предложения 
-  // на любом языке любой длины:
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
-
-in
-  #"Ответ на главный вопрос жизни, вселенной и всего такого"
-
-</code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Условное выражение</h4>
 <aside class="notes">
-Например, давайте напишем выражение требующее принятие решения:<br/>
-Если ткущий ответ 42 то следующего ответа ждать бесконечно долго, а иначе ответа не будет.<br/>
+Метаданные это просто запись дополнительной информации, которую прикреплять к значению и извлекать из значения.<br/>
+Например письмо. Содержимое письма это значение, а отправитель, получатель, индекс получателя это метаданные.<br/>
 </aside>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
+</section>
+<section >
+<h3>Обзор</h3>
+<h4>Примеры основных элементов языка</h4>
+<ul>
+<li>Безымянное значение</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let 
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
-  currentAnswer = 10,
-
-  nextAnswerDelay = 
-      if currentAnswer = 42
-    then #infinity // Бесконечность
-    else null      // Пусто
-in
-  nextAnswerDelay
+<td class="snippet"><pre class="fssnip"><code lang="pq">42
+</code></pre></td></tr></table>
+<ul>
+<li>Именованное значение</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">А = 42
+</code></pre></td></tr></table>
+<ul>
+<li>Именованное выражение с формулой, при вычислении возвращающей значение</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">B = 6 * 7
 </code></pre></td></tr></table>
 </section>
 <section >
-<h3>Синтаксис</h3>
-<h4>Пример функции</h4>
+<h3>Обзор</h3>
+<h4>Примеры основных элементов языка</h4>
+<ul>
+<li>Безымянная функция</li>
+</ul>
 <aside class="notes">
-Более интересной возможностью будет возможность повторно использовать созданное выражение.<br/>
-Давайте обернем его в функцию и вернем для повторного использования.<br/>
+Или как говорят анонимная функция.<br/>
 </aside>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-<span class="l">8: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let 
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
-  getNextAnswerDelay = (currentAnswer) =&gt; 
-    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
-    then #infinity
-    else null
-in
-  getNextAnswerDelay
+<td class="snippet"><pre class="fssnip"><code lang="pq">(x) =&gt; x * 1.18
 </code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Пример функции (Подробности)</h4>
-<aside class="notes">
-Более интересной возможностью будет возможность повторно использовать созданное выражение.<br/>
-Давайте обернем его в функцию и вернем для повторного использования.<br/>
-</aside>
+<ul>
+<li>Именованная функция это выражение с формулой при вычислении возвращающей функцию</li>
+</ul>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-<span class="l">8: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let 
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
-  getNextAnswerDelay = (currentAnswer) =&gt; 
-    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
-    then #infinity
-    else null
-in
-  getNextAnswerDelay
+<td class="snippet"><pre class="fssnip"><code lang="pq">sumVat = (x) =&gt; x * 1.18
 </code></pre></td></tr></table>
-</section>
-<section >
-<h3>Синтаксис</h3>
-<h4>Условное выражение</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
+<ul>
+<li>Именованное значение с прикрепленными метаданными</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let 
-  // Имя выражения только на английском языке без пробелов
-  NumberValue = 42,
-
-  // Имя выражения в форме человеко-читаемого предложения.
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
-
-  // Функция
-  getNextAnswer = (currentAnswer) =&gt; 
-    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
-    then #infinity // Бесконечность
-    else #nan // Не число
-  
-in
-  getNextAnswer
-
+<td class="snippet"><pre class="fssnip"><code lang="pq">Vat = 1.18 meta [Description = "Базовая ставка налога в РФ в 2017 году."]
 </code></pre></td></tr></table>
 </section>
 <section >
@@ -349,6 +249,9 @@ in
 </tbody>
 </table>
 
+<aside class="notes">
+Обратите внимание, что в примерах фактически происходит создание значений с помощью встроенных в язык функций начинающих свое имя с решетки.<br/>
+</aside>
 </section>
 <section >
 <h3>Базовые типы данных</h3>
@@ -376,6 +279,9 @@ in
 </tbody>
 </table>
 
+<aside class="notes">
+Power Query поддерживает три базовые структуры данных это списки (list), записи (record) и таблицы (table). Таблицы это списки содержащие в качестве значения записи.<br/>
+</aside>
 </section>
 <section >
 <h3>Базовые типы данных</h3>
@@ -406,7 +312,7 @@ in
 </tr>
 <tr class="even">
 <td><p>function</p></td>
-<td><p><code>(x) =&gt; x + 1</code></p></td>
+<td><p><code>(x) =&gt; x * 1.18</code></p></td>
 <td><p>Функциональный тип данных</p></td>
 </tr>
 <tr class="odd">
@@ -419,12 +325,326 @@ in
 
 </section>
 <section >
+<h3>Базовые типы данных</h3>
+<h4>Списки</h4>
+<ul>
+<li>Список простых значений</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ 1, 2, 3 } // Список из трех значений
+</code></pre></td></tr></table>
+<ul>
+<li>Перечисление</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{1,3,5..10} // Значения 1,3 и от 5 до 10 включительно.
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ "а" .. "я" } // Алфавит: а, б, в, г .. я.
+</code></pre></td></tr></table>
+<ul>
+<li>Смешанный список</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ true, 42, 3.14, "Привет" } // Значения истина, числа и строка
+</code></pre></td></tr></table>
+<aside class="notes">
+Список это упорядоченная последовательность значений. Нумерация начинается от нуля.<br/>
+В следствие ленивости языка в Power Query можно создавать списки бесконечные списки.<br/>
+Перечень значений списка заключена в фигурные скобки.<br/>
+Список может содержать в своем перечне значения любых типов.<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Записи</h4>
+<ul>
+<li>Простая запись</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия", Дед Мороз = "Россия" ]
+</code></pre></td></tr></table>
+<ul>
+<li>Запись содержащая поля отдельными значениями и списком</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия",
+   Дед Мороз = "Россия" ,
+   Санта Клаус = {"Германия", "США", "Канада"},
+  #"Одзи-сан" = "Япония"
+</code></pre></td></tr></table>
+<aside class="notes">
+Запись это не упорядоченный набор полей.<br/>
+Каждое поле имеет пару имя и значение.<br/>
+Имя должно быть уникальным внутри записи.<br/>
+Запись может содержать поля со значениями любых типов.<br/>
+Обратите внимание как записано имя деда мороза в Японии.<br/>
+Пришлось указать так называемую литеральную форму записи.<br/>
+Запись позволяет иметь простые имена, содержащие пробелы в качестве идентификатора, но если появляются другие символы их нужно записывать в специальной форме. <br/>
+</aside>
+<aside class="notes">
+Оставить на будущее: <br/>
+ getHoliday = (SantaName, record) => <br/>
+   SantaName & " символ нового года в стране " & <br/>
+   Record.Field(record, SantaName) & "." ]<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Таблица</h4>
+<ul>
+<li>Символы нового года в разных странах</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">  #table( 
+    {"Имя", "Страна"}
+    {
+      {"Дед мороз", "Россия"}
+      {"Санта-Клаус", "США"}
+      {"Санта-Клаус", "Германия"}
+      {"Санта-Клаус", "Канада"}
+      {"Одзи-сан", "Япония"}
+    }
+  )
+</code></pre></td></tr></table>
+<aside class="notes">
+Таблица это множество значений собранных столбцы и строки.<br/>
+Самая простая базовая функция создающая таблицу из первый параметр список заголовков, второй список строк.<br/>
+В базовой библиотеке есть ряд удобных функций по созданию списков. <br/>
+</aside>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Комментарии</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">/*Многострочные комментарии*/
+
+// Однострочный комментарий
+</code></pre></td></tr></table>
+<aside class="notes">
+Вложенные комментарии не поддерживаются.<br/>
+</aside>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Простейшие выражения</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">42 // Значение
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">6 * 7 // Произведение двух чисел
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">#date // простейшая функция создания даты
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">#date(2017,08,23) // Значение даты
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Выражение let</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let           // Обязательное ключевое слово.
+    A = 1,    // Далее с новой строки одно
+    B = 2,    // или несколько выражений
+    C = A + B // разделенных запятыми.
+in            // Обязательное ключевое слово.
+  C           // Возвращаемый результат, вычисляется перед возвратом.
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Имена выражений</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  // Имя выражения только на английском языке без пробелов:
+  NumberValue = 42,
+
+  // Имя выражения в форме человеко-читаемого предложения 
+  // на любом языке любой длины:
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
+
+in
+  #"Ответ на главный вопрос жизни, вселенной и всего такого"
+
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Условное выражение</h4>
+<aside class="notes">
+Например, давайте напишем выражение требующее принятие решения:<br/>
+Если ткущий ответ 42 то следующего ответа ждать бесконечно долго, а иначе ответа не будет.<br/>
+Обратите внимание, условное выражение написано без скобок.<br/>
+Так как if then else это тоже выражение то обе ветки then и else обязательные.<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  currentAnswer = 10,
+
+  nextAnswerDelay = 
+      if currentAnswer = 42
+    then #infinity // Бесконечность
+    else null      // Пусто
+in
+  nextAnswerDelay
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Условное выражение</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  currentAnswer = 10,
+  nextAnswerDelay = 
+    if currentAnswer = 42 or 
+       currentAnswer = 0 or
+       currentAnswer = null
+    then #infinity
+    else null
+
+in
+  nextAnswerDelay
+</code></pre></td></tr></table>
+<aside class="notes">
+В общем случае, если вы описываете в условии несколько последовательных условий, то скобки ставить не нужно,<br/>
+Но если вы явно хотите, можете указать скобками приоритет вычисления тех или иных условий.<br/>
+Особенно если идет комбинация or и and в одном условии if.  <br/>
+</aside>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Пример функции</h4>
+<aside class="notes">
+Более интересной возможностью будет возможность повторно использовать созданное выражение.<br/>
+Давайте обернем его в функцию и вернем для повторного использования.<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  getNextAnswerDelay = (currentAnswer) =&gt; 
+    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
+    then #infinity
+    else null
+in
+  getNextAnswerDelay
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Пример функции (Подробности)</h4>
+<aside class="notes">
+Более интересной возможностью будет возможность повторно использовать созданное выражение.<br/>
+Давайте обернем его в функцию и вернем для повторного использования.<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  getNextAnswerDelay = (currentAnswer) =&gt; 
+    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
+    then #infinity
+    else null
+in
+  getNextAnswerDelay
+</code></pre></td></tr></table>
+</section>
+<section >
 <h3>Метаданные</h3>
 <ul>
 <li><code>#sections</code> - Возвращает в записи имена и типы возвращаемого значения для всех запросов из текущего документа Power BI.</li>
 <li><code>#shared</code> - Возвращает в записи все имена запросы, функции и типы из текущего документа Power BI.</li>
 </ul>
 </section>
+</section>
+<section >
+<h2>Базовая библиотека языка Power Query</h2>
+</section>
+<section >
+<h2>Средства разработки</h2>
+</section>
+<section >
+<h2>Ссылки на источники и дополнительные материалы</h2>
 </section>
 
 
