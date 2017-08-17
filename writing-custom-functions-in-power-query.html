@@ -77,7 +77,7 @@
 </section>
 <section >
 <h3>Обзор</h3>
-<p><strong>Power Query</strong> чистый <em>(pure)</em>, поддерживающий функции высшего порядка <em>(higer-order)</em>, динамически тимизированный <em>(dynamically typed)</em>, частично ленивый <em>(partially lazy)</em> функциональный язык программирования.</p>
+<p><strong>Power Query</strong> чистый <em>(pure)</em>, поддерживающий функции высшего порядка <em>(higer-order)</em>, динамически типизированный <em>(dynamically typed)</em>, частично ленивый <em>(partially lazy)</em> функциональный язык программирования.</p>
 </section>
 <section >
 <h3>Обзор</h3>
@@ -152,7 +152,7 @@ in            // Обязательное ключевое слово.
 <span class="l"> 9: </span>
 <span class="l">10: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="m">let 
+<td class="snippet"><pre class="fssnip"><code lang="m">let
   // Имя выражения только на английском языке без пробелов:
   NumberValue = 42,
 
@@ -168,6 +168,10 @@ in
 <section >
 <h3>Синтаксис</h3>
 <h4>Условное выражение</h4>
+<aside class="notes">
+Например, давайте напишем выражение требующее принятие решения:<br/>
+Если текущиий ответ 42 то следующего ответа ждать бесконечно долго, а иначе ответа не будет.<br/>
+</aside>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -178,56 +182,69 @@ in
 <span class="l"> 8: </span>
 <span class="l"> 9: </span>
 <span class="l">10: </span>
-<span class="l">11: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip"><code lang="m">let 
   #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
   currentAnswer = 10,
 
-  // Если текущее значение равно 42, то вернуть бесконечность иначе вернуть пусто:
-  nextAnswer = 
+  nextAnswerDelay = 
       if currentAnswer = 42
     then #infinity // Бесконечность
     else null      // Пусто
 in
-  nextAnswer
+  nextAnswerDelay
 </code></pre></td></tr></table>
 </section>
 <section >
 <h3>Синтаксис</h3>
 <h4>Пример функции</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
+<aside class="notes">
+Более интерестной возможностью будет возможность повторно использовать созданное выражение.<br/>
+Давайте обернем его в функцию и вернем для повторного использования.<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip"><code lang="m">let 
-  // Имя выражения только на английском языке без пробелов
-  NumberValue = 42,
-
-  // Имя выражения в форме человеко-читаемого предложения.
-  #"Ответ на главный вопрос жизни, вселенной и всего такого" = NumberValue,
-
-  // Функция
-  getNextAnswer = (currentAnswer) =&gt; 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  getNextAnswerDelay = (currentAnswer) =&gt; 
     if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
-    then #infinity // Бесконечность
-    else #nan // Не число
-  
+    then #infinity
+    else null
 in
-  getNextAnswer
-
+  getNextAnswerDelay
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
+<h4>Пример функции (Подробности)</h4>
+<aside class="notes">
+Более интерестной возможностью будет возможность повторно использовать созданное выражение.<br/>
+Давайте обернем его в функцию и вернем для повторного использования.<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="m">let 
+  #"Ответ на главный вопрос жизни, вселенной и всего такого" = 42,
+  getNextAnswerDelay = (currentAnswer) =&gt; 
+    if currentAnswer = #"Ответ на главный вопрос жизни, вселенной и всего такого"
+    then #infinity
+    else null
+in
+  getNextAnswerDelay
 </code></pre></td></tr></table>
 </section>
 <section >
@@ -404,8 +421,8 @@ in
 <section >
 <h3>Метаданные</h3>
 <ul>
-<li><code>#sections</code> - Возвращает запись содержащая ключ имя запроса и значение возвращаемое запросом значение в текущем документе.</li>
-<li><code>#shared</code> - Возвращает все имена находящиеся в текущем окружении.</li>
+<li><code>#sections</code> - Возвращает в записи имена и тивы возвращаемого значения для всех запросов из текущего документа Power BI.</li>
+<li><code>#shared</code> - Возвращает в записи все имена запросы, функции и типы из текущего документа Power BI.</li>
 </ul>
 </section>
 </section>
