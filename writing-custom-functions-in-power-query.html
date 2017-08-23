@@ -494,6 +494,34 @@ in            // Обязательное ключевое слово.
 </section>
 <section >
 <h3>Синтаксис</h3>
+<h4>Вложенное выражение let</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  countBox =
+    let
+        A = 1,
+        B = 2,
+        C = A + B
+    in
+      C,
+  Result = countBox * 4
+in 
+  Result
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Синтаксис</h3>
 <h4>Имена выражений</h4>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
