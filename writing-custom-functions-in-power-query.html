@@ -52,10 +52,8 @@
             <section >
 <section author="Dmitriy Vlasov" description="Разработка пользовательских функций в Power Query (Черновик)" theme="night" title="Writing Custom Functions in Power Query" transition="default">
 <h2>Разработка пользовательских функций в Power Query</h2>
-<p><a href="http://DmitriyVlasov.ru">Дмитрий Власов</a>,</p>
-<p>Ведущий ERP разработчик в Awara IT Solutions</p>
-<p>Первая встреча <a href="https://www.pbiusergroup.com/communities/community-home?CommunityKey=f6f83caa-78fb-4a11-92fb-522457064f77">группы пользователей Microsoft Power BI в Санкт-Петербурге</a></p>
-<p>23 августа 2017</p>
+<p><a href="http://DmitriyVlasov.ru"><em>DmitriyVlasov.ru</em></a> | FProg Spb</p>
+<p>31 августа 2017</p>
 </section>
 <section >
 <h2>Содержание</h2>
@@ -91,8 +89,8 @@
 <h2>Основные компоненты языка Power Query</h2>
 <ul>
 <li>Обзор</li>
-<li>Базовые типы данных</li>
 <li>Синтаксис</li>
+<li>Базовые типы данных</li>
 </ul>
 </section>
 <section >
@@ -183,261 +181,6 @@
 </pre></td>
 <td class="snippet"><pre class="fssnip"><code lang="pq">Vat = 1.18 meta [Description = "Базовая ставка налога в РФ в 2017 году."]
 </code></pre></td></tr></table>
-</section>
-<section >
-<h3>Базовые типы данных</h3>
-<h4>Примитивные типы данных</h4>
-<table>
-<thead>
-<tr class="header">
-<th><p>Тип</p></th>
-<th><p>Пример</p></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>logical</p></td>
-<td><p><code>true</code></p></td>
-<td><p><code>false</code></p></td>
-</tr>
-<tr class="even">
-<td><p>text</p></td>
-<td><p><code>"Hello"</code></p></td>
-<td><p><code>"Привет"</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>number</p></td>
-<td><p><code>-42</code></p></td>
-<td><p><code>3.14</code></p></td>
-</tr>
-</tbody>
-</table>
-
-</section>
-<section >
-<h3>Базовые типы данных</h3>
-<h4>Типы даты времени</h4>
-<table>
-<thead>
-<tr class="header">
-<th><p>Тип</p></th>
-<th><p>Пример</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>time</p></td>
-<td><p><code>#time(21,35,00)</code></p></td>
-</tr>
-<tr class="even">
-<td><p>date</p></td>
-<td><p><code>#date(2017,08,23)</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>datetime</p></td>
-<td><p><code>#datetime(2017,08,23 21,35,00)</code></p></td>
-</tr>
-<tr class="even">
-<td><p>datetimezone</p></td>
-<td><p><code>#datetimetzone(2017,08,23 21,35,00 09,00)</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>duration</p></td>
-<td><p><code>#duration(0,1,30,0)</code></p></td>
-</tr>
-</tbody>
-</table>
-
-<aside class="notes">
-Обратите внимание, что в примерах фактически происходит создание значений с помощью встроенных в язык функций начинающих свое имя с решетки.<br/>
-</aside>
-</section>
-<section >
-<h3>Базовые типы данных</h3>
-<h4>Структуры данных</h4>
-<table>
-<thead>
-<tr class="header">
-<th><p>Тип</p></th>
-<th><p>Пример</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>list</p></td>
-<td><p><code>{1, 2, 3}</code></p></td>
-</tr>
-<tr class="even">
-<td><p>record</p></td>
-<td><p><code>[FirstName = "Олег", LastName = "Попов"]</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>table</p></td>
-<td><p><code>#table( { "Группа", "Резус" }, { {1, "+"}, {2, "-"} } )</code></p></td>
-</tr>
-</tbody>
-</table>
-
-<aside class="notes">
-Power Query поддерживает три базовые структуры данных это списки (list), записи (record) и таблицы (table). Таблицы это списки содержащие в качестве значения записи.<br/>
-</aside>
-</section>
-<section >
-<h3>Базовые типы данных</h3>
-<h4>Особые типы данных</h4>
-<table>
-<thead>
-<tr class="header">
-<th><p>Тип</p></th>
-<th><p>Пример</p></th>
-<th><p>Примечание</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>null</p></td>
-<td><p><code>null</code></p></td>
-<td><p>Отсутствие значения.</p></td>
-</tr>
-<tr class="even">
-<td><p>any</p></td>
-<td></td>
-<td><p>Любой тип данных.</p></td>
-</tr>
-<tr class="odd">
-<td><p>anynonnull</p></td>
-<td><p>Любой тип данных, значение должно быть.</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><p>binary</p></td>
-<td><p><code>#binary("AQID")</code></p></td>
-<td><p>Двоичные данные.</p></td>
-</tr>
-<tr class="odd">
-<td><p>function</p></td>
-<td><p><code>(x) =&gt; x * 1.18</code></p></td>
-<td><p>Функциональный тип данных.</p></td>
-</tr>
-<tr class="even">
-<td><p>type</p></td>
-<td><p><code>type { number }</code></p></td>
-<td><p>Тип данных описывающий тип ;-).</p></td>
-</tr>
-</tbody>
-</table>
-
-</section>
-<section >
-<h3>Базовые структуры данных</h3>
-<h4>Список</h4>
-<ul>
-<li>Список простых значений</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq">{ 1, 2, 3 } // Список из трех значений
-</code></pre></td></tr></table>
-<ul>
-<li>Перечисление</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq">{1,3,5..10} // Значения 1,3 и от 5 до 10 включительно.
-</code></pre></td></tr></table>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq">{ "а" .. "я" } // Алфавит: а, б, в, г .. я.
-</code></pre></td></tr></table>
-<ul>
-<li>Смешанный список</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq">{ true, 42, 3.14, "Привет" } // Значения истина, числа и строка
-</code></pre></td></tr></table>
-<aside class="notes">
-Список это упорядоченная последовательность значений. Нумерация начинается от нуля.<br/>
-В следствие ленивости языка в Power Query можно создавать списки бесконечные списки.<br/>
-Перечень значений списка заключена в фигурные скобки.<br/>
-Список может содержать в своем перечне значения любых типов.<br/>
-</aside>
-</section>
-<section >
-<h3>Базовые структуры данных</h3>
-<h4>Запись</h4>
-<ul>
-<li>Простая запись</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия", Дед Мороз = "Россия" ]
-</code></pre></td></tr></table>
-<ul>
-<li>Запись содержащая поля отдельными значениями и списком</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия",
-   Дед Мороз = "Россия" ,
-   Санта Клаус = {"Германия", "США", "Канада"},
-  #"Одзи-сан" = "Япония" 
- ]
-</code></pre></td></tr></table>
-<aside class="notes">
-Запись это не упорядоченный набор полей.<br/>
-Каждое поле имеет пару имя и значение.<br/>
-Имя должно быть уникальным внутри записи.<br/>
-Запись может содержать поля со значениями любых типов.<br/>
-Обратите внимание как записано имя деда мороза в Японии.<br/>
-Пришлось указать так называемую литеральную форму записи.<br/>
-Запись позволяет иметь простые имена, содержащие пробелы в качестве идентификатора, но если появляются другие символы их нужно записывать в специальной форме. <br/>
-</aside>
-<aside class="notes">
-Оставить на будущее: <br/>
- getHoliday = (SantaName, record) => <br/>
-   SantaName & " символ нового года в стране " & <br/>
-   Record.Field(record, SantaName) & "." ]<br/>
-</aside>
-</section>
-<section >
-<h3>Базовые структуры данных</h3>
-<h4>Таблица</h4>
-<ul>
-<li>Символы нового года в разных странах</li>
-</ul>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="pq">  #table( 
-    {"Имя", "Страна"}
-    {
-      {"Дед мороз", "Россия"}
-      {"Санта-Клаус", "США"}
-      {"Санта-Клаус", "Германия"}
-      {"Санта-Клаус", "Канада"}
-      {"Одзи-сан", "Япония"}
-    }
-  )
-</code></pre></td></tr></table>
-<aside class="notes">
-Таблица это множество значений собранных столбцы и строки.<br/>
-Самая простая базовая функция создающая таблицу из первый параметр список заголовков, второй список строк.<br/>
-В базовой библиотеке есть ряд удобных функций по созданию списков. <br/>
-</aside>
 </section>
 <section >
 <h3>Синтаксис</h3>
@@ -638,6 +381,326 @@ in
   getNextAnswerDelay
 </code></pre></td></tr></table>
 </section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Примитивные типы данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>logical</p></td>
+<td><p><code>true</code></p></td>
+<td><p><code>false</code></p></td>
+</tr>
+<tr class="even">
+<td><p>text</p></td>
+<td><p><code>"Hello"</code></p></td>
+<td><p><code>"Привет"</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>number</p></td>
+<td><p><code>-42</code></p></td>
+<td><p><code>3.14</code></p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Типы даты времени</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>time</p></td>
+<td><p><code>#time(21,35,00)</code></p></td>
+</tr>
+<tr class="even">
+<td><p>date</p></td>
+<td><p><code>#date(2017,08,23)</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>datetime</p></td>
+<td><p><code>#datetime(2017,08,23 21,35,00)</code></p></td>
+</tr>
+<tr class="even">
+<td><p>datetimezone</p></td>
+<td><p><code>#datetimetzone(2017,08,23 21,35,00 09,00)</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>duration</p></td>
+<td><p><code>#duration(0,1,30,0)</code></p></td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notes">
+Обратите внимание, что в примерах фактически происходит создание значений с помощью встроенных в язык функций начинающих свое имя с решетки.<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Структуры данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>list</p></td>
+<td><p><code>{1, 2, 3}</code></p></td>
+</tr>
+<tr class="even">
+<td><p>record</p></td>
+<td><p><code>[FirstName = "Олег", LastName = "Попов"]</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>table</p></td>
+<td><p><code>#table( { "Группа", "Резус" }, { {1, "+"}, {2, "-"} } )</code></p></td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notes">
+Power Query поддерживает три базовые структуры данных это списки (list), записи (record) и таблицы (table). Таблицы это списки содержащие в качестве значения записи.<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые типы данных</h3>
+<h4>Особые типы данных</h4>
+<table>
+<thead>
+<tr class="header">
+<th><p>Тип</p></th>
+<th><p>Пример</p></th>
+<th><p>Примечание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>null</p></td>
+<td><p><code>null</code></p></td>
+<td><p>Отсутствие значения.</p></td>
+</tr>
+<tr class="even">
+<td><p>any</p></td>
+<td></td>
+<td><p>Любой тип данных.</p></td>
+</tr>
+<tr class="odd">
+<td><p>binary</p></td>
+<td><p><code>#binary("AQID")</code></p></td>
+<td><p>Двоичные данные.</p></td>
+</tr>
+<tr class="even">
+<td><p>function</p></td>
+<td><p><code>(x) =&gt; x * 1.18</code></p></td>
+<td><p>Функциональный тип данных.</p></td>
+</tr>
+<tr class="odd">
+<td><p>type</p></td>
+<td><p><code>type { number }</code></p></td>
+<td><p>Тип данных описывающий тип.</p></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Список</h4>
+<ul>
+<li>Список простых значений</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ 1, 2, 3 } // Список из трех значений
+</code></pre></td></tr></table>
+<ul>
+<li>Перечисление</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{1,3,5..10} // Значения 1,3 и от 5 до 10 включительно.
+</code></pre></td></tr></table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ "а" .. "я" } // Алфавит: а, б, в, г .. я.
+</code></pre></td></tr></table>
+<ul>
+<li>Смешанный список</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">{ true, 42, 3.14, "Привет" } // Значения истина, числа и строка
+</code></pre></td></tr></table>
+<aside class="notes">
+Список это упорядоченная последовательность значений. Нумерация начинается от нуля.<br/>
+В следствие ленивости языка в Power Query можно создавать списки бесконечные списки.<br/>
+Перечень значений списка заключена в фигурные скобки.<br/>
+Список может содержать в своем перечне значения любых типов.<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Доступ к элементам списка</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  abc = { "а" .. "я" }
+in
+  abc{4}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Запись</h4>
+<ul>
+<li>Простая запись</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия", Дед Мороз = "Россия" ]
+</code></pre></td></tr></table>
+<ul>
+<li>Запись содержащая поля отдельными значениями и списком</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq"> [ Йоулупукки = "Финляндия",
+   Дед Мороз = "Россия" ,
+   Санта Клаус = {"Германия", "США", "Канада"},
+  #"Одзи-сан" = "Япония" 
+ ]
+</code></pre></td></tr></table>
+<aside class="notes">
+Запись это не упорядоченный набор полей.<br/>
+Каждое поле имеет пару имя и значение.<br/>
+Имя должно быть уникальным внутри записи.<br/>
+Запись может содержать поля со значениями любых типов.<br/>
+Обратите внимание как записано имя деда мороза в Японии.<br/>
+Пришлось указать так называемую литеральную форму записи.<br/>
+Запись позволяет иметь простые имена, содержащие пробелы в качестве идентификатора, но если появляются другие символы их нужно записывать в специальной форме. <br/>
+</aside>
+<aside class="notes">
+Оставить на будущее: <br/>
+ getHoliday = (SantaName, record) => <br/>
+   SantaName & " символ нового года в стране " & <br/>
+   Record.Field(record, SantaName) & "." ]<br/>
+</aside>
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Доступ к элементам записи</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  NewYearSymbols =  
+    [ Йоулупукки = "Финляндия",
+      Дед Мороз = "Россия" ,
+      Санта Клаус = {"Германия", "США", "Канада"},
+      #"Одзи-сан" = "Япония" 
+    ]
+in
+  NewYearSymbols[Дед Мороз]
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Таблица</h4>
+<ul>
+<li>Символы нового года в разных странах</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">#table( 
+    {"Имя", "Страна"},
+    {
+      {"Дед мороз", "Россия"},
+      {"Санта-Клаус", "США"},
+      {"Санта-Клаус", "Германия"},
+      {"Санта-Клаус", "Канада"},
+      {"Одзи-сан", "Япония"}
+    }
+  )  
+</code></pre></td></tr></table>
+<aside class="notes">
+Таблица это множество значений собранных столбцы и строки.<br/>
+Самая простая базовая функция создающая таблицу из первый параметр список заголовков, второй список строк.<br/>
+В базовой библиотеке есть ряд удобных функций по созданию списков. <br/>
+</aside>
+</section>
+<section >
+<h3>Базовые структуры данных</h3>
+<h4>Доступ к элементам таблицы</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="pq">let
+  NewYearSymbols = #table( 
+    {"Имя", "Страна"},
+    {
+      {"Дед мороз", "Россия"},
+      {"Санта-Клаус", "США"},
+      {"Санта-Клаус", "Германия"},
+      {"Санта-Клаус", "Канада"},
+      {"Одзи-сан", "Япония"}
+    }
+  )
+in
+  NewYearSymbols{0}[Страна]
+</code></pre></td></tr></table>
+</section>
 </section>
 <section >
 <section >
@@ -657,49 +720,49 @@ in
 <section >
 <h3>Функции работы с базовыми типами данных</h3>
 <ul>
-<li>Number</li>
-<li>Logical</li>
-<li>Text</li>
-<li>Time</li>
-<li>Date</li>
-<li>DateTime</li>
-<li>DateTimeZone</li>
-<li>Duration</li>
-<li>Binary</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296605.aspx">Number</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296607.aspx">Logical</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296604.aspx">Text</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296610.aspx">Time</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296606.aspx">Date</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296608.aspx">DateTime</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296609.aspx">DateTimeZone</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296613.aspx">Duration</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296618.aspx">Binary</a></li>
 </ul>
 </section>
 <section >
 <h3>Функции работы с базовыми структурами данных</h3>
 <ul>
-<li>List</li>
-<li>Record</li>
-<li>Table</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296612.aspx">List</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296611.aspx">Record</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296614.aspx">Table</a></li>
 </ul>
 </section>
 <section >
 <h3>Функции работы с метаданными</h3>
 <ul>
-<li>Value</li>
-<li>Type</li>
-<li>Expression</li>
-<li>Function values</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296616.aspx">Value</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296621.aspx">Type</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296622.aspx">Expression</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt267541.aspx">Function values</a></li>
 </ul>
 </section>
 <section >
 <h3>Функции обработки исключений и побочных эффектов</h3>
 <ul>
-<li>Action</li>
-<li>Error handling</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt708835.aspx">Action</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt267542.aspx">Error handling</a></li>
 </ul>
 </section>
 <section >
 <h3>Вспомогательные функции</h3>
 <ul>
-<li>Combiner</li>
-<li>Comparer</li>
-<li>Replacer</li>
-<li>Splitter</li>
-<li>Uri</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt267543.aspx">Combiner</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296620.aspx">Comparer</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt267540.aspx">Replacer</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296623.aspx">Splitter</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/mt296617.aspx">Uri</a></li>
 </ul>
 </section>
 <section >
@@ -723,6 +786,7 @@ in
 <h3>Для пользователя</h3>
 <ul>
 <li><a href="https://powerbi.microsoft.com/ru-ru/desktop/">Power Bi Desktop</a></li>
+<li><a href="https://docs.microsoft.com/ru-ru/sql/sql-server/what-s-new-in-sql-server-2017">SQL Server 2017 Analysis Services (SSAS)</a></li>
 <li>Excel 2013, Надстройка <a href="https://www.microsoft.com/ru-ru/download/details.aspx%3Fid%3D39379">Power Query</a></li>
 <li>Excel 2016, <em>(Закладка "Данные" блок "Скачать и преобразовать")</em></li>
 </ul>
